@@ -313,22 +313,22 @@ namespace BasicCalculator
         }
 
         /// <summary>
-        /// Deletes the character to the right of the selection start of the user input
+        /// Deletes the character to the left of the selection start of the user input
         /// </summary>
         private void DeleteTextValue()
         {
             // If we don't have a value to delete, return
-            if (this.UserInputText.Text.Length < this.UserInputText.SelectionStart + 1)
+            if (this.UserInputText.SelectionStart == 0)
                 return;
 
             // Remeber selection start
             var selectionStart = this.UserInputText.SelectionStart;
 
-            // Delete the character to the right of the selection
-            this.UserInputText.Text = this.UserInputText.Text.Remove(this.UserInputText.SelectionStart, 1);
+            // Delete the character to the left of the selection
+            this.UserInputText.Text = this.UserInputText.Text.Remove(this.UserInputText.SelectionStart-1, 1);
 
             // Store new selection start
-            this.UserInputText.SelectionStart = selectionStart;
+            this.UserInputText.SelectionStart = selectionStart - 1;
 
             // Set selection length to zero
             this.UserInputText.SelectionLength = 0;
